@@ -1,28 +1,19 @@
 import '../../style/Home/HomePage.css';
-import Card from '../../components/Card/Card';
 import AppBar from '../../components/AppBar/AppBar';
+import CountriesList from '../../components/CountriesList/CountriesList';
+import React, { useState } from 'react';
 
 function Homepage() {
+  const [searchInput, setSearchInput] = useState('');
+
     return (
         <div className="HomePage">
-            <AppBar/>
+            <AppBar setSearchInput={setSearchInput} />
             <div className="main" >
-                <ul className='countryList'>
-                     <li><Card/></li>
-                     <li><Card/></li>
-                     <li><Card/></li>
-                     <li><Card/></li>
-                     <li><Card/></li>
-                     <li><Card/></li>
-                     <li><Card/></li>
-                     <li><Card/></li>
-                     <li><Card/></li>
-                     <li><Card/></li>
-                     <li><Card/></li>
-                 </ul>
+               <CountriesList  searchInput={searchInput}/>
             </div>
         </div>
       );
-    }
+}
 
 export default Homepage;

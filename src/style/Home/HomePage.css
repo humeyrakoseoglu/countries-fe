@@ -1,7 +1,6 @@
 .HomePage {
   display: flex;
   flex-direction: column;
-  flex:2;
 }
 
 .main {
@@ -16,7 +15,7 @@
 
 .countryList li {
   background-color: #f1f1f1;
-  padding: 0.5rem;
+  padding: 2%;
   margin-bottom: 3%;
-  border-radius: 5px;
+  border-radius: 3%;
 }
