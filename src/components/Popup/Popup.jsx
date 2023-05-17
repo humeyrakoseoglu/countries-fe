@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createPortal } from "react-dom";
 import '../../style/Popup/Popup.css';
 
 const flagUrl = 'http://aedemirsen.bilgimeclisi.com/country_flags/';// +"/"+id+".svg"
-const Popup = ({ isShowing, hide, code, name, native,phone,continent,capital,currency,languages }) => isShowing ? ReactDOM.createPortal(
-
-    
-  <React.Fragment>
+const Popup = ({ isShowing, hide, code, name, native,phone,continent,capital,currency,languages }) =>  { if (!isShowing) return null; 
+  return createPortal(  
+  <>
     <div className="modal-overlay"/>
     <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
       <div className="modal">
@@ -16,7 +15,6 @@ const Popup = ({ isShowing, hide, code, name, native,phone,continent,capital,cur
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        
         <div className='popup-card'>
          <img src={flagUrl + code + '.svg'} alt={`Flag of ${code}`} />
           <ul className="popup-card-item">
@@ -32,7 +30,7 @@ const Popup = ({ isShowing, hide, code, name, native,phone,continent,capital,cur
         </div>
       </div>
     </div>
-  </React.Fragment>, document.body
-) : null;
+  </>, document.body)
+}
 
 export default Popup;

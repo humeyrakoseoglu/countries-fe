@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import { Page404 } from "./pages/Page404";
 import Homepage from "./src/pages/Home/Homepage";
-import DetailPage from "./src/pages/Detail/DetailPage";
+import DetailPage from "./src/pages/Detail/Detailpage";
 
 export const RouteList = () => {
   return useRoutes([
@@ -10,7 +10,7 @@ export const RouteList = () => {
           element: <Homepage />,
         },
         {
-          path: "/detail/:id",
+          path: "/detail/:code",
           element: <DetailPage />,
         },
         {

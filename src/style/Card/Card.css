@@ -1,31 +1,29 @@
 .card{
-    color: #000;
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2%;
-  }
+  color: #000;
+  font-size: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2%;
+}
 
-  .card img{
+.card img{
+  display: block;
+  float: left;
+  width: 10%;
+}
 
-    display: block;
-    float: left;
-    width: 10%;
-  }
-  
-  .card h2 {
-    padding-left: 25%;
-    flex: 1;
-  }
-  
-  .card ul{
-    
-    float: right;
-    list-style: none;
-  }
+.card h2 {
+  font-size: 150%;
+  padding-left: 25%;
+  flex: 1;
+}
 
-  
+.card ul{
+  float: right;
+  list-style: none;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -37,3 +35,12 @@
   opacity: .5;
 }
 
+@media only screen and (max-width: 1100px) {
+  .grid-card{
+    color: #fc0e0e;
+    font-size: 100%;
+    display: flex;
+    align-items: center;
+    padding: 5%;
+  }
+}

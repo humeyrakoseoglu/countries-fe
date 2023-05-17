@@ -22,7 +22,6 @@
     padding: 1%;
     padding-left: 2%;
     border-radius: 5px 5px 5px 5px;
-  
   }
   
   .subBar {
@@ -35,7 +34,7 @@
     padding-bottom: 1%;
   }
   
-  .btn {
+  .button {
     background-color: #98abd2;
     border: none;
     color: black;

@@ -5,17 +5,4 @@
 
 .main {
   background-color: rgb(255, 255, 255);
-}
-
-.countryList {
-  list-style: none;
-  padding: 1%;
-  margin: 0;
-}
-
-.countryList li {
-  background-color: #f1f1f1;
-  padding: 2%;
-  margin-bottom: 3%;
-  border-radius: 3%;
-}
+  }
