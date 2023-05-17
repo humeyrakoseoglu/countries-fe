@@ -1,18 +1,19 @@
 .popup-card{
     color: #000;
+    background-color: #f1f1f1;
     font-size: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     padding: 2%;
+    border-radius: 3%;
   }
 
   .popup-card img{
     display: block;
     float: left;
-    width: 40%;
+    width: 30%;
   }
-
 
   .popup-card ul{
     float: right;

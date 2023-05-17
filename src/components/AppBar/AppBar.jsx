@@ -2,11 +2,10 @@ import '../../style/AppBar/AppBar.css';
 import {BsFillGridFill,BsList} from 'react-icons/bs';
 import {FaSortAmountUpAlt, FaFilter} from 'react-icons/fa';
 import React from 'react'
+import {useCountry} from '../../context/CountryContext'
 
-function AppBar ({ setSearchInput, toggleGridView, gridView}){ 
-    const handleInputChange = (e) => {
-        setSearchInput(e.target.value);
-      };     
+function AppBar (){ 
+    const { toggleGridView, gridView, handleInputChange} = useCountry();
 
     return(
     <div className='toolbar'>

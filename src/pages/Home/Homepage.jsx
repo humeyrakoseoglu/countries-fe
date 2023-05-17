@@ -1,19 +1,14 @@
 import '../../style/Home/HomePage.css';
 import AppBar from '../../components/AppBar/AppBar';
 import CountriesList from '../../components/CountriesView/CountriesList';
-import React, { useState } from 'react';
+import {useCountry} from '../../context/CountryContext'
 
 function Homepage() {
-  const [searchInput, setSearchInput] = useState('');
-  const [gridView, setGridView] = useState(false);
-
-  const toggleGridView = () => {
-    setGridView(!gridView);
-  };
+    const {setSearchInput, searchInput, toggleGridView, gridView} = useCountry();
 
     return (
       <div className="HomePage">
-      <AppBar setSearchInput={setSearchInput} gridView={gridView} toggleGridView={() => toggleGridView(!gridView)} />
+      <AppBar setSearchInput={setSearchInput} gridView={gridView} toggleGridView={toggleGridView} />
             <div className="main" >
                <CountriesList  searchInput={searchInput} gridView={gridView} />
             </div>
