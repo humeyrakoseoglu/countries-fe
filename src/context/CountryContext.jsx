@@ -4,7 +4,7 @@ const CountryContext = createContext();
 
 export const CountryProvider = ({ children }) => {
 
-  const url = 'http://localhost:8080/countries';
+  const url = 'http://localhost:4141/countries';
 
   const [countriesList, setCountriesList] = useState([]);
   const [results, setResults] = useState([]);
