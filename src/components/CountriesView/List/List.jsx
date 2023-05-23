@@ -3,15 +3,14 @@ import "../../../style/CountriesList/CountriesList.css";
 import {useCountry} from '../../../context/CountryContext'
 
 function List() {
-    const { results } = useCountry();
-    //console.log('countriesList prop:', results);
+    const { filteredResults } = useCountry();
 
       return (
         <ul className="countryList">
-          {results.map(({ flag, code, name, native, phone, continent, capital, currency, languages }) => (
+          {filteredResults.map(({ flag, code, name, native, phone, continent, capital, currency, languages }) => (
             <li key={code}>
               <Card
-                countries={results}
+                countries={filteredResults}
                 code={code}
                 name={name}
                 native={native}

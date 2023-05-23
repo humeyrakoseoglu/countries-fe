@@ -7,7 +7,8 @@ import {useCountry} from '../../context/CountryContext'
 function AppBar (){ 
     const { 
       handleFilterChange, 
-      refresh,searchItems, 
+      refresh,
+      searchItems, 
       handleFilterToggle, 
       handleFilter,
       filterValues, 
@@ -72,7 +73,7 @@ function AppBar (){
                 />
               </label>
               <button className="applyButton" onClick={handleFilter}>Apply</button>
-              <button className="cancelButton" onClick={refresh} > Cancel </button>
+              <button className="cancelButton" onClick={refresh}> Cancel </button>
             </div>
           )}
         </div>

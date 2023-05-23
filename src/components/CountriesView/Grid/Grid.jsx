@@ -1,13 +1,14 @@
 import {useCountry} from '../../../context/CountryContext'
 import { Link } from 'react-router-dom';
 import '../../../style/CountriesList/CountriesList.css'
+
 function Grid() {
-  const { results } = useCountry();
-//console.log(results);
+  const { filteredResults } = useCountry();
+
   return (
     <div className="country-grid-container">
       <div className="country-cards__list">
-        {results.map(({ code, name , flag, phone}) => (
+        {filteredResults.map(({ code, name , flag, phone}) => (
          <Link to={`/countries/${code}`} style={{ textDecoration: 'none' }}  key={code}>
           <div key={code} className="country-card " >
             <img src={flag} alt={`Flag of ${code}`} />

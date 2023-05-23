@@ -7,30 +7,38 @@ export const CountryProvider = ({ children }) => {
   const url = 'http://localhost:8080/countries';
 
   const [countriesList, setCountriesList] = useState([]);
+  const [results, setResults] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
 
   const [input, setInput] = useState("");
-  const [results, setResults] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const [gridView, setGridView] = useState(false);
   const [gridViewMode, setGridViewMode] = useState(gridView);
-
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const [sortType, setSortType] = useState('asc');
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-
   const [filterValues, setFilterValues] = useState({
     currency: '',
     phone: 0,
     continent: ''
   });
 
-  //GET ALL COUNTRIES OPERATION
   useEffect(() => {
+    fetchCountries();
+  }, []);
+
+  useEffect(() => {
+    fetchSortData(sortType);
+    setGridViewMode(gridView);
+  }, [sortType, gridView]);
+
+  //GET ALL COUNTRIES OPERATION
+  const fetchCountries = () => {
     fetch(url + '/getCountries')
       .then((res) => res.json())
       .then(
@@ -38,47 +46,44 @@ export const CountryProvider = ({ children }) => {
           setIsLoaded(true);
           setCountriesList(result);
           setResults(result);
+          setFilteredResults(result);
         },
         (error) => {
           setIsLoaded(true);
           setError(error);
         }
       );
-  }, []);
+  };
 
-  //SEARCH OPERAION
+  //SEARCH OPERATION
   const searchItems = async (searchValue) => {
     setInput(searchValue);
-    console.log(searchValue);
       // Filter countries based on search query
-      const searchedCountries = countriesList.filter((country) => {
+      try {
+      const searchedCountries = results.filter((country) => {
         return (
           country.name.toLowerCase().includes(searchValue.toLowerCase()) ||
           country.code.toLowerCase().includes(searchValue.toLowerCase())
         );
       });
-
-    setResults(searchedCountries);
-    console.log(searchedCountries);  
-    console.error('Error searching countries:', error)
+     setFilteredResults(searchedCountries);
+      } catch (error) {
+        console.error('Error searching countries:', error)
+      }
   };
-
-  useEffect(() => {
-    fetchData(sortType);
-    setGridViewMode(gridView);
-  }, [sortType, gridView]);
 
   //GRID OPERATIONS
   const toggleGridView = () => {
     setGridView(!gridView);
   };
 
+  //Refresh CountriesList
   const refresh = () => {
     setResults(countriesList);
   }
 
   //SORT OPERATIONS
-  const fetchData = async (sortType) => {
+  const fetchSortData = async (sortType) => {
     try {
       const response = await fetch(url + `/sorted/${sortType}`);
       if (!response.ok) {
@@ -86,12 +91,11 @@ export const CountryProvider = ({ children }) => {
       }
       const result = await response.json();
       setResults(result);
-      //setCountriesList(result);
       setIsLoaded(true);
     } catch (error) {
       setError(true);
       setIsLoaded(true);
-      console.error(error);
+      console.error('Error sorting country:', error);
     }
   };
 
@@ -99,6 +103,7 @@ export const CountryProvider = ({ children }) => {
     const newSortType = sortType === 'asc' ? 'dsc' : 'asc';
     setSortType(newSortType);
   };
+
 
   //DELETE OPERATIONS
   const handleDelete = (code) => {
@@ -123,8 +128,6 @@ export const CountryProvider = ({ children }) => {
       });
   };
 
-
-
   //MULTI FILTER OPERATIONS
   const handleFilterToggle = () => {
     setIsFilterOpen(!isFilterOpen);
@@ -144,7 +147,7 @@ export const CountryProvider = ({ children }) => {
       filterValues.phone,
       filterValues.continent
     );
-    console.log(filterCountries);
+    //console.log(filterCountries);
   };
 
   const filterCountries = async (currency, phone, continent) => {
@@ -164,11 +167,6 @@ export const CountryProvider = ({ children }) => {
       if (response.ok) {
         const filteredCountries = await response.json();
         setResults(filteredCountries);
-        setFilterValues({
-          currency: '',
-          phone: 0,
-          continent: ''
-        });
       } else {
         console.error('Hata:', response.statusText);
       }
@@ -176,6 +174,16 @@ export const CountryProvider = ({ children }) => {
       console.error('Hata:', error);
     }
   };
+
+  useEffect(() => {
+   const searchedCountries = results.filter((country) => {
+    return (
+      country.name.toLowerCase().includes(input.toLowerCase()) ||
+      country.code.toLowerCase().includes(input.toLowerCase())
+    );
+  });
+  setFilteredResults(searchedCountries);
+  }, [results, input]);
 
   //VALUES
   const values = {
@@ -196,6 +204,7 @@ export const CountryProvider = ({ children }) => {
     input,
     setInput,
     searchItems,
+    filteredResults,
     isModalOpen,
     setIsModalOpen,
     handleDelete,
