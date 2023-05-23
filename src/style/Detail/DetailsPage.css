@@ -1,0 +1,98 @@
+.detail-card {
+  color: #000;
+  background-color: #f1f1f1;
+  font-size: 100%;
+  display: flex;
+  border-radius: 3%;
+  flex-direction: column;
+  padding: 5%;
+
+}
+
+.detail-header {
+  display: flex;
+  padding-bottom: 5%;
+  flex-direction: row;
+  justify-content: space-between; /* Added justify-content to space the items evenly */
+  align-items: center; /* Added align-items to center the items vertically */
+}
+
+.detail-content {
+  display: flex; /* Added display: flex to create a flex container */
+  justify-content: space-evenly; /* Added justify-content to space the items evenly */
+  align-items: center; /* Added align-items to center the child elements vertically */
+}
+
+.close {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: rgb(158, 15, 15);
+  color: white;
+}
+
+.detail-card img {
+  display: block;
+  padding-right: 5%;
+  float: left;
+  width: 30%;
+}
+
+.detail-card ul {
+  float: right;
+  list-style: none;
+  font-weight: bold;
+
+}
+
+.detail-card li {
+  border-style: outset;
+}
+
+.modal {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.modal p {
+  margin-bottom: 20px;
+}
+
+.modal button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: rgb(158, 15, 15);
+  color: white;
+}
+
+.cancel-button {
+  background-color: rgb(7, 174, 46);
+  color: white;
+}
+.btn {
+  background-color: white;
+  border: none;
+  color: black;
+  font-size: 100%;
+}

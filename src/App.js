@@ -4,6 +4,8 @@ import Homepage from './pages/Home/Homepage.jsx';
 import { Routes, Route } from "react-router-dom";
 import DetailsPage from './pages/Detail/DetailsPage';
 import { CountryProvider } from './context/CountryContext';
+import Modal from 'react-modal';
+Modal.setAppElement('#root'); // Set the app element to the root div
 
 function App() {
   return (

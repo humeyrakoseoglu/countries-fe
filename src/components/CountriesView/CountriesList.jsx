@@ -3,20 +3,29 @@ import List from "./List/List";
 import Grid from "./Grid/Grid";
 import {useCountry} from '../../context/CountryContext'
 
+
 function CountriesList() {
-  const { gridViewMode, filteredCountries} = useCountry();
+  const { gridViewMode, results, error, isLoaded } = useCountry();
+  //console.log('countriesList:', results);
 
-  console.log('filteredCountries:', filteredCountries);
-
-  return (
-   <div>
-    {gridViewMode ?
-      <Grid filteredCountries={filteredCountries} />
-     : 
-      <List filteredCountries={filteredCountries} />
-    }
-   </div>
-  );
+  if(error) {
+    return <div>ERROR !!!</div>;
+  } else if(!isLoaded) {
+    return <div>Loading...</div>;
+  } else if (!results || results.length === 0) {
+    return <div>No countries available.</div>;
+  } else {
+    return (
+      <div>
+       {gridViewMode ?
+         <Grid countriesList={results} />
+        : 
+         <List countriesList={results} />
+       }
+      </div>
+     );
+  }
+  
 }
 
 export default CountriesList;
