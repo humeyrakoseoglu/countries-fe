@@ -4,7 +4,7 @@ import {FaSortAmountUpAlt, FaFilter} from 'react-icons/fa';
 import React from 'react'
 import {useCountry} from '../../context/CountryContext'
 
-function AppBar (){ 
+function AppBar (){ //AppBar, arayüzde üst kısımda bulunan bir çubuktur. bu projede filtreleme, sıralama, görünüm değiştirme ve arama gibi işlevleri içerir.
     const { 
       handleFilterChange, 
       refresh,
@@ -25,11 +25,11 @@ function AppBar (){
               type="text"
               id="searchButton"
               placeholder="Search.."
-              onChange={(e) => searchItems(e.target.value)}
+              onChange={(e) => searchItems(e.target.value)} // her bir karakteri girdikçe searchItems çağrılır 
             />
           </div>
           <div className="subBar">
-            <button className="button" id="gridButton" onClick={() => toggleGridView()}>
+            <button className="button" id="gridButton" onClick={() => toggleGridView()}> 
               {gridView ? <BsList /> : <BsFillGridFill />}
             </button>
             <div className="filterAndSortButtons">

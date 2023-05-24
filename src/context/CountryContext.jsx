@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState ,useContext} from 'react';
 
+//Create Context API for state management
 const CountryContext = createContext();
 
 export const CountryProvider = ({ children }) => {
@@ -28,17 +29,20 @@ export const CountryProvider = ({ children }) => {
     continent: ''
   });
 
-  useEffect(() => {
+  useEffect(() => { //bileşen yüklendiğinde yürütülür ve fetchCountries işlevini çağırarak ülkelerin listesini alır
     fetchCountries();
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { //fetchSortData işlevini çağırarak sıralama işlemini gerçekleştirir 
     fetchSortData(sortType);
+  }, [sortType]);
+
+  useEffect(() => { //setGridViewMode işlevini çağırarak gridView durum değişkenini günceller
     setGridViewMode(gridView);
-  }, [sortType, gridView]);
+  }, [ gridView]);
 
   //GET ALL COUNTRIES OPERATION
-  const fetchCountries = () => {
+  const fetchCountries = () => { // Tüm ülkeleri almak için API'yi çağırır ve uygun durum değişkenlerine yerleştirir.
     fetch(url + '/getCountries')
       .then((res) => res.json())
       .then(
@@ -56,9 +60,8 @@ export const CountryProvider = ({ children }) => {
   };
 
   //SEARCH OPERATION
-  const searchItems = async (searchValue) => {
+  const searchItems = async (searchValue) => { // Arama işlemini gerçekleştirir ve arama sonucunu filteredResults durum değişkenine yerleştirir.
     setInput(searchValue);
-      // Filter countries based on search query
       try {
       const searchedCountries = results.filter((country) => {
         return (
@@ -73,17 +76,17 @@ export const CountryProvider = ({ children }) => {
   };
 
   //GRID OPERATIONS
-  const toggleGridView = () => {
+  const toggleGridView = () => {  //Grid görünümünü açıp kapatır.
     setGridView(!gridView);
   };
 
   //Refresh CountriesList
-  const refresh = () => {
+  const refresh = () => { //Ülkelerin listesini yeniler.
     setResults(countriesList);
   }
 
   //SORT OPERATIONS
-  const fetchSortData = async (sortType) => {
+  const fetchSortData = async (sortType) => { //Sıralama işlemini gerçekleştirir ve sıralanmış ülkelerin listesini results durum değişkenine yerleştirir.
     try {
       const response = await fetch(url + `/sorted/${sortType}`);
       if (!response.ok) {
@@ -99,14 +102,13 @@ export const CountryProvider = ({ children }) => {
     }
   };
 
-  const toggleSort = () => {
+  const toggleSort = () => { //Sıralama türünü değiştirir.
     const newSortType = sortType === 'asc' ? 'dsc' : 'asc';
     setSortType(newSortType);
   };
 
-
   //DELETE OPERATIONS
-  const handleDelete = (code) => {
+  const handleDelete = (code) => { // Bir ülkeyi siler.
     fetch(url + `/code/${code}`, {
       method: 'DELETE'
     })
@@ -133,7 +135,7 @@ export const CountryProvider = ({ children }) => {
     setIsFilterOpen(!isFilterOpen);
   };
 
-  const handleFilterChange = (event) => {
+  const handleFilterChange = (event) => { //Filtreleme panelini açar veya kapatır.
     const { name, value } = event.target;
     setFilterValues((prevValues) => ({
       ...prevValues,
@@ -141,7 +143,7 @@ export const CountryProvider = ({ children }) => {
     }));
   };
 
-  const handleFilter = () => {
+  const handleFilter = () => { //Filtrelemeyi gerçekleştirir.
     filterCountries(
       filterValues.currency,
       filterValues.phone,
@@ -150,7 +152,7 @@ export const CountryProvider = ({ children }) => {
     //console.log(filterCountries);
   };
 
-  const filterCountries = async (currency, phone, continent) => {
+  const filterCountries = async (currency, phone, continent) => { //Ülkeleri filtreler ve filtrelenmiş sonuçları results durum değişkenine yerleştirir.
     try {
       let apiUrl = url+'/filter?';
 
@@ -175,7 +177,7 @@ export const CountryProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
+  useEffect(() => { //results veya input değiştiğinde yürütülür ve ülkeleri filtreler ve filteredResults durum değişkenine yerleştirir.
    const searchedCountries = results.filter((country) => {
     return (
       country.name.toLowerCase().includes(input.toLowerCase()) ||
@@ -222,7 +224,7 @@ export const CountryProvider = ({ children }) => {
 };
 
 
-export const useCountry = () => {
+export const useCountry = () => { //useContext kullanılarak CountryContext değerlerine erişilir ve bu değerler döndürülür. 
     const context = useContext(CountryContext);
 
     if(context === undefined){

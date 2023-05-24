@@ -2,7 +2,7 @@ import {useCountry} from '../../../context/CountryContext'
 import { Link } from 'react-router-dom';
 import '../../../style/CountriesList/CountriesList.css'
 
-function Grid() {
+function Grid() { //Ülke listesini ızgara görünümünde göstermek için kullanılır.
   const { filteredResults } = useCountry();
 
   return (
