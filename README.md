@@ -64,9 +64,22 @@ I created docker-compose because I will add different containers later.<br/>
 The ports for the React project are '3000:3000'.
 Both internal and external ports were set to 3000.<br/>
 After doing these. It will be enough to say docker-compose up in our application. In this way, our application will be dockerized and a docker image will be created and the image will be raised.
-## Project Screen Shots
 
-Screenshots will be uploaded
+<br/>
+You can run the project on the http://localhost:3000 connection after you set the url to request in the CountryContext component in the context directory (I wrote the url of my back-end project in Docker 'http://localhost:4141/countries') and the endpoints. ..<br/>
+
+## Project Screen Shots
+List View:<br/>
+![listView](https://github.com/humeyrakoseoglu/countries-fe/assets/71442681/fd924423-3903-4df6-8dc3-1e5072e20ea5)<br/>
+Grid View:<br/>
+![gridView](https://github.com/humeyrakoseoglu/countries-fe/assets/71442681/291659e4-ea15-47ac-b0af-16e3b8aa7cb6)<br/>
+Descending Sorting:<br/>![dscSorting](https://github.com/humeyrakoseoglu/countries-fe/assets/71442681/cbd33ff4-bdd5-4967-917d-36046686add3)<br/>
+Searching 'TUR' in countries:<br/>![searchTur](https://github.com/humeyrakoseoglu/countries-fe/assets/71442681/1b193a1b-8102-4a12-905f-496fb52dd95d)<br/>
+Filter country:![image](https://github.com/humeyrakoseoglu/countries-fe/assets/71442681/0221bded-3bd6-4e0d-a13d-a969da4ade60)<br/>
+Detail Page: ![detailsPage](https://github.com/humeyrakoseoglu/countries-fe/assets/71442681/d96f297b-ab08-485d-9b7b-7e223584e025)
+<br/>
+Delete Confirm Modal: ![confirmDelete](https://github.com/humeyrakoseoglu/countries-fe/assets/71442681/d9403b76-bdec-40c6-9e8a-cd9236ac6438)<br/>
+Country not found page:<br/>![country_not_found_go_back](https://github.com/humeyrakoseoglu/countries-fe/assets/71442681/1ba7fd72-d6f4-4597-af3b-47d1b065bbc8)
 
 ### Dependencies
 - React Icons <br/>
